@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameManager gameManager;
+    public bool isDead = false;
     public float flapVelocity = 2f;
     private Rigidbody2D birdRB;
     
@@ -16,7 +18,15 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            birdRB.velocity = Vector2.up * flapVelocity;
+            birdRB.linearVelocity = Vector2.up * flapVelocity;
         }
+    }
+    
+    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isDead = true;
+        gameManager.GameOver();
     }
 }

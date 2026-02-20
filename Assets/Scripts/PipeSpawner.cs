@@ -24,7 +24,7 @@ public class spawner : MonoBehaviour
         if(time > queueTime)
         {
             GameObject go = Instantiate(obstacle);
-            go.transform.position = spawnPoint.position + new Vector3(0, Random.Range(-height, height), 0);
+            go.transform.position = spawnPoint.localPosition + new Vector3(0, Random.Range(-height, height), 0);
 
             time = 0;
 
