@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    public GameManager gameManager;
+    public gameManager gameManager;
     public bool isDead = false;
     public float flapVelocity = 2f;
     private Rigidbody2D birdRB;
+    private Transform playerTransform;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isDead = false;
         birdRB = GetComponent<Rigidbody2D>();
     }
 
@@ -22,11 +26,17 @@ public class Player : MonoBehaviour
         }
     }
     
-    
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isDead = true;
         gameManager.GameOver();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "ScoreTrigger")
+        {
+            gameManager.UpScore();
+        }
     }
 }
