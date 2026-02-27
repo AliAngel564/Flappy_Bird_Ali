@@ -67,11 +67,6 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void Init()
-    {
-        HighScore = getHighScore();
-    }
-
     public int getCurrentScore()
     {
         return PlayerScore;
