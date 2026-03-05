@@ -395,7 +395,7 @@ TextureImporter:
         width: 57
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -417,7 +417,7 @@ TextureImporter:
         width: 19
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -426,6 +426,50 @@ TextureImporter:
       bones: []
       spriteID: 43cd1be5e71c65a4ba9068c8776dbf04
       internalID: 2008993426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flappy Bird Sprites_14
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 164
+        width: 92
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15415ce5ca887614da1ff2d92cc59f47
+      internalID: 119121362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Flappy Bird Sprites_15
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 66
+        width: 96
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68f772a63dd4c1b428d1f3ef652cd955
+      internalID: 824953577
       vertices: []
       indices: 
       edges: []
@@ -450,6 +494,8 @@ TextureImporter:
       Flappy Bird Sprites_11: -493759279
       Flappy Bird Sprites_12: 280061649
       Flappy Bird Sprites_13: 2008993426
+      Flappy Bird Sprites_14: 119121362
+      Flappy Bird Sprites_15: 824953577
       Flappy Bird Sprites_2: 1794943641
       Flappy Bird Sprites_3: 1735828729
       Flappy Bird Sprites_4: 1918322086

@@ -6,25 +6,16 @@ public class ScoreBoardManager : MonoBehaviour
 {
     [Header("DEPENDENCIES")] 
     public gameManager gameManager;
-    public GameObject goldMedal;
-    public GameObject silverMedal;
     public TextMeshProUGUI currentScore;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI middleScoreText;
+    public TextMeshProUGUI lowScoreText;
 
     private void Update()
     {
-        currentScore.text = gameManager.getCurrentScore().ToString();
-        if (gameManager.getHighScore()<gameManager.getCurrentScore())
-        {
-            goldMedal.SetActive(true);
-            silverMedal.SetActive(false);
-            highScoreText.text = gameManager.getHighScore().ToString();
-        }
-        else if(gameManager.getHighScore()>gameManager.getCurrentScore() ||gameManager.getCurrentScore()==gameManager.getHighScore())
-        {
-            goldMedal.SetActive(false);
-            silverMedal.SetActive(true);
-            highScoreText.text = gameManager.getCurrentScore().ToString();
-        }
+        currentScore.text = gameManager.getCurrentScore().ToString() +" Points";
+        highScoreText.text = gameManager.getHighScore().ToString()+" Points";
+        middleScoreText.text = gameManager.getmiddleScore().ToString()+" Points";
+        lowScoreText.text = gameManager.getLowScore().ToString()+" Points";
     }
 }
