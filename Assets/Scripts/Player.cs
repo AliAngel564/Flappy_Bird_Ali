@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && isDashAvailable)
         {
+            //birdRB.position;
             StartCoroutine(Dash(isDashAvailable,playerTransform));
         }
     }
@@ -64,10 +65,9 @@ public class Player : MonoBehaviour
     IEnumerator Dash(bool dash,Transform _playerTransform)
     {
         pipeSpawner.queueTime = 1.5f;
+        obstacle.pipeSpeed += dashForce;
         initialPosition= transform.position;
         isDashAvailable = false;
-        obstacle.pipeSpeed += dashForce;
-        birdRB.AddForce(Vector2.right *dashImpulse , ForceMode2D.Impulse);
         foreach (GameObject obstacles in pipeSpawner.ObstacleList)
         {
             if (obstacles.TryGetComponent(out Obstacle obstacle))
@@ -78,9 +78,9 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1);
         pipeSpawner.queueTime = 4f;
+        obstacle.pipeSpeed = initialPipeVelocity;
         isDashAvailable = true;
         obstacle.pipeSpeed = initialPipeVelocity;
-        birdRB.position = Vector2.MoveTowards(birdRB.position, initialPosition, 5);
         foreach (GameObject obstacles in pipeSpawner.ObstacleList)
         {
             if (obstacles.TryGetComponent(out Obstacle obstacle))
