@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b7b71972289774ba4ccc0e63c884a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  queueTime: 3
+  queueTime: 4
   obstacle: {fileID: 3418060877877865527, guid: 8f300551e07d30f4e8ba95cb6f5299d5, type: 3}
   ObstacleList: []
   height: 1.5

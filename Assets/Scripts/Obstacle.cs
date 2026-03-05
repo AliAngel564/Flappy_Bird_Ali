@@ -16,6 +16,5 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         transform.position += ((Vector3.left * pipeSpeed)*Time.deltaTime);
-        Debug.Log("numero random: "+Random.Range(0,1));
     }
 }

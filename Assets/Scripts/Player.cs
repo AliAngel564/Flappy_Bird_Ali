@@ -63,7 +63,8 @@ public class Player : MonoBehaviour
 
     IEnumerator Dash(bool dash,Transform _playerTransform)
     {
-        initialPosition = transform.position;
+        pipeSpawner.queueTime = 1.5f;
+        initialPosition= transform.position;
         isDashAvailable = false;
         obstacle.pipeSpeed += dashForce;
         birdRB.AddForce(Vector2.right *dashImpulse , ForceMode2D.Impulse);
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(1);
+        pipeSpawner.queueTime = 4f;
         isDashAvailable = true;
         obstacle.pipeSpeed = initialPipeVelocity;
         birdRB.position = Vector2.MoveTowards(birdRB.position, initialPosition, 5);
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
             if (obstacles.TryGetComponent(out Obstacle obstacle))
             {
                 obstacle.pipeSpeed = initialPipeVelocity;
+                
             }
         }
     }
