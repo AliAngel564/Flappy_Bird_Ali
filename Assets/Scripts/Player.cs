@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     [Header("Dependencies")]
-    public Obstacle obstacle;
+    public Obstacle pipePrefab;
     public spawner  pipeSpawner;
     public gameManager gameManager;
     public ParticleSystem ps;
@@ -66,12 +66,12 @@ public class Player : MonoBehaviour
 
     IEnumerator Dash(bool dash,Transform _playerTransform)
     {
-        pipeSpawner.queueTime = 1.5f;
-        obstacle.pipeSpeed += dashForce;
+        pipeSpawner.queueTime = 1f;
+        pipePrefab.pipeSpeed += dashForce;
         initialPosition= transform.position;
         isDashAvailable = false;
         ps.Play();
-        foreach (GameObject obstacles in pipeSpawner.ObstacleList)
+        foreach (GameObject obstacles in pipeSpawner.PipePool)
         {
             if (obstacles.TryGetComponent(out Obstacle obstacle))
             {
@@ -81,10 +81,10 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1);
         pipeSpawner.queueTime = 3;
-        obstacle.pipeSpeed = initialPipeVelocity;
+        pipePrefab.pipeSpeed = initialPipeVelocity;
         isDashAvailable = true;
-        obstacle.pipeSpeed = initialPipeVelocity;
-        foreach (GameObject obstacles in pipeSpawner.ObstacleList)
+        pipePrefab.pipeSpeed = initialPipeVelocity;
+        foreach (GameObject obstacles in pipeSpawner.PipePool)
         {
             if (obstacles.TryGetComponent(out Obstacle obstacle))
             {
