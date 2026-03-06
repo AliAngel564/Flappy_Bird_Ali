@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Obstacle obstacle;
     public spawner  pipeSpawner;
     public gameManager gameManager;
+    public ParticleSystem ps;
     [Header("Bird Variables")]
     public bool isDead = false;
     public float flapVelocity = 2f;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ps.Stop();
         playerTransform = GetComponent<Transform>();
         isDead = false;
         
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
         obstacle.pipeSpeed += dashForce;
         initialPosition= transform.position;
         isDashAvailable = false;
+        ps.Play();
         foreach (GameObject obstacles in pipeSpawner.ObstacleList)
         {
             if (obstacles.TryGetComponent(out Obstacle obstacle))
@@ -77,7 +80,7 @@ public class Player : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(1);
-        pipeSpawner.queueTime = 4f;
+        pipeSpawner.queueTime = 3;
         obstacle.pipeSpeed = initialPipeVelocity;
         isDashAvailable = true;
         obstacle.pipeSpeed = initialPipeVelocity;
