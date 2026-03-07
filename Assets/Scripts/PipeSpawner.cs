@@ -7,9 +7,6 @@ using Random = UnityEngine.Random;
 
 public class spawner : MonoBehaviour
 {
-    public float queueTime = 1.5f;
-    private float time = 0;
-    public GameObject obstacle;
     private Transform spawnPoint;
     public List<GameObject> PipePool = new List<GameObject>();
     public Transform pipeSpawnPoint;

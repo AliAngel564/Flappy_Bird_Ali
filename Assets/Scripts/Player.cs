@@ -6,29 +6,21 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     [Header("Dependencies")]
-    public Obstacle pipePrefab;
-    public spawner  pipeSpawner;
     public gameManager gameManager;
     public ParticleSystem ps;
     [Header("Bird Variables")]
-    public bool isDead = false;
+    public bool isDead;
     public float flapVelocity = 2f;
     public float dashForce = 0.5f;
-    public float dashImpulse = 1f;
-    private bool isDashAvailable = true;
+    public bool isDashing;
     [Header("Bird Components")]
     public Rigidbody2D birdRB;
-    private Transform playerTransform;
-    private Vector2 initialPosition;
-    
-    private float initialPipeVelocity = 1;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ps.Stop();
-        playerTransform = GetComponent<Transform>();
         isDead = false;
         
     }
@@ -43,10 +35,9 @@ public class Player : MonoBehaviour
             birdRB.linearVelocity = Vector2.up * flapVelocity;
         }
 
-        if (Input.GetMouseButtonDown(1) && isDashAvailable)
+        if (Input.GetMouseButtonDown(1))
         {
-            //birdRB.position;
-            StartCoroutine(Dash(isDashAvailable,playerTransform));
+            isDashing = true;
         }
     }
     
@@ -61,36 +52,6 @@ public class Player : MonoBehaviour
         if (other.tag == "ScoreTrigger")
         {
             gameManager.UpScore();
-        }
-    }
-
-    IEnumerator Dash(bool dash,Transform _playerTransform)
-    {
-        pipeSpawner.queueTime = 1f;
-        pipePrefab.pipeSpeed += dashForce;
-        initialPosition= transform.position;
-        isDashAvailable = false;
-        ps.Play();
-        foreach (GameObject obstacles in pipeSpawner.PipePool)
-        {
-            if (obstacles.TryGetComponent(out Obstacle obstacle))
-            {
-                obstacle.pipeSpeed += dashForce;
-            }
-        }
-
-        yield return new WaitForSecondsRealtime(1);
-        pipeSpawner.queueTime = 3;
-        pipePrefab.pipeSpeed = initialPipeVelocity;
-        isDashAvailable = true;
-        pipePrefab.pipeSpeed = initialPipeVelocity;
-        foreach (GameObject obstacles in pipeSpawner.PipePool)
-        {
-            if (obstacles.TryGetComponent(out Obstacle obstacle))
-            {
-                obstacle.pipeSpeed = initialPipeVelocity;
-                
-            }
         }
     }
 }

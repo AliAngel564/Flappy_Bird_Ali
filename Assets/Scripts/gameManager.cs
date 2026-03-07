@@ -11,7 +11,8 @@ using UnityEngine.SocialPlatforms.Impl;
 public class gameManager : MonoBehaviour
 {
     [Header("DEPENDENCIES")] 
-    public GameObject PipeSpawner;
+    public spawner PipeSpawner;
+    public GameObject PipeSpawnerObject;
     public GameObject restartButton;
     public Player player;
     public GameObject ScoreBoard;
@@ -57,12 +58,13 @@ public class gameManager : MonoBehaviour
         }
         Debug.Log(PlayerScore);
         ScoreText.text = PlayerScore.ToString();
+        CheckPlayerDash();
     }
 
     public void StartGame()
     {
         currentScore.SetActive(true);
-        PipeSpawner.SetActive(true);
+        PipeSpawnerObject.SetActive(true);
         GetReady.SetActive(false);
         Tap.SetActive(false);
     }
@@ -101,6 +103,38 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void CheckPlayerDash()
+    {
+        if (player.isDashing)
+        {
+            StartCoroutine(Dash());
+        }
+        
+    }
+    
+    IEnumerator Dash()
+    {
+        player.isDashing = false;
+        player.ps.Play();
+        foreach (GameObject obstacles in PipeSpawner.PipePool)
+        {
+            if (obstacles.TryGetComponent(out Obstacle obstacle))
+            {
+                obstacle.pipeSpeed += player.dashForce;
+            }
+        }
+
+        yield return new WaitForSecondsRealtime(1);
+        foreach (GameObject obstacles in PipeSpawner.PipePool)
+        {
+            if (obstacles.TryGetComponent(out Obstacle obstacle))
+            {
+                obstacle.pipeSpeed = 1f;
+                
+            }
+        }
+    }
+    
     public int getCurrentScore()
     {
         return PlayerScore;
