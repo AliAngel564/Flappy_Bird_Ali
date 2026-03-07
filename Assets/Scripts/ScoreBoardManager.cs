@@ -19,3 +19,4 @@ public class ScoreBoardManager : MonoBehaviour
         lowScoreText.text = gameManager.getLowScore().ToString()+" Points";
     }
 }
+    
